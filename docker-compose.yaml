@@ -1,0 +1,17 @@
+version: '3.1'
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: POSTGRES
+      POSTGRES_PASSWORD: POSTGRES
+      POSTGRES_DB: first
+
+  monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Path to the Dockerfile for monitoring
+    depends_on:
+      - db  # Ensure the db service is up before monitor starts
